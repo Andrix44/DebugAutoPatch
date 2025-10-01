@@ -1,7 +1,7 @@
 # DebugAutoPatch IDA Plugin - Release 0.2
 # By Scott Mudge, 2019 -- https://scottmudge.com.
 #
-# NOTE: This has been tested with IDA 7.0 - I have made attempts at backward/forward compatibility,
+# NOTE: This has been tested with IDA 7.0 and 9.1 - I have made attempts at backward/forward compatibility,
 # but please report bugs for other versions.
 #
 # DebugAutoPatch is released under the GNU GPLv3 license. See LICENSE for more information.
@@ -30,11 +30,11 @@ import os
 import idc
 import json
 
-
 #  ----------------------------------------- Globals -----------------------------------------
 DAP_VERSION = "0.2"
 DAP_NAME = "DebugAutoPatch"
-DAP_CONFIG_FILE_PATH = os.path.join(idc.GetIdaDirectory(), 'cfg', 'DebugAutoPatch.cfg')
+IDADIR = idc.idadir() if hasattr(idc, "idadir") else idc.GetIdaDirectory()
+DAP_CONFIG_FILE_PATH = os.path.join(IDADIR, 'cfg', 'DebugAutoPatch.cfg')
 DAP_WEBSITE = "https://github.com/scottmudge/DebugAutoPatch"
 DEBUG_MESSAGE_LEVEL = logging.INFO
 DAP_INITIALIZED = False
